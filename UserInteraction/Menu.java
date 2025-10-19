@@ -28,16 +28,19 @@ public class Menu {
                 case "2":
                     inverse(scanner);
                     break;
-                case "3" :
+                case "3":
+                    findDeterminant(scanner);
+                    break;
+                case "4" :
                     matrixAddition(scanner);
                     break;
-                case "4":
+                case "5":
                     matrixSubtraction(scanner);
                     break;
-                case "5":
+                case "6":
                     matrixMultiplicationWithScalar(scanner);
                     break;
-                case "6":
+                case "7":
                     matrixMultiplication(scanner);
                     break;
                 case "exit" :
@@ -79,6 +82,18 @@ public class Menu {
         }
         
 
+    }
+
+    private static void findDeterminant(AdvancedScanner scanner) throws InvalidAttributeValueException{
+        Matrix matA = scanner.getMatrix("A");
+        if(matA.getColumnAmount() != matA.getColumnAmount()){
+            System.out.println("A does not have a determinate as it is not a square matrix.");
+            return;
+        }
+        System.out.println("A:");
+        matA.printMatrix();
+        Numb detA = CommonMatrixOpperations.determinant(matA);
+        System.out.println("detA : " + detA);
     }
 
     private static void matrixAddition(AdvancedScanner scanner) throws InvalidAttributeValueException{
@@ -158,10 +173,11 @@ public class Menu {
         String toPrint = "What opperation would you like to use?"
         + "\nRow Reduce            : 1"
         + "\nFind Inverse          : 2"
-        + "\nAdd Matrixes          : 3"
-        + "\nSubtract Matrixes     : 4"  
-        + "\nMultiply Matrix and C : 5"
-        + "\nMultiply Two Matrixes : 6"
+        + "\nFind Determinant      : 3"
+        + "\nAdd Matrixes          : 4"
+        + "\nSubtract Matrixes     : 5"  
+        + "\nMultiply Matrix and C : 6"
+        + "\nMultiply Two Matrixes : 7"
         + "\nQuit Program          : exit"
         + "\n";
         System.out.println(toPrint);
