@@ -3,7 +3,7 @@ import UtilityClasses.*;
 
 public class RowReduction {
     
-    public static Matrix rowRecduce(Matrix originalMatrix){
+    public static Matrix rowReduce(Matrix originalMatrix){
         Matrix augmentedMatrix = new Matrix(originalMatrix);
 
         int minDepth = 1;

@@ -118,6 +118,40 @@ public class Matrix {
 
         return new Matrix(m,1,colArr);
     }
+
+    public Matrix getSubMatrix(int firstRow, int secondRow, int firstColumn, int secondColumn){
+        Numb[][] newGrid = new Numb[secondRow-firstRow + 1][secondColumn-firstColumn +1];
+        for(int i = 0; i < newGrid.length; i++){
+            for(int j = 0; j < newGrid[0].length; j++){
+                newGrid[i][j] = arr[i+firstRow-1][j+firstColumn-1];
+            }
+        }
+
+        return new Matrix(newGrid);
+    }
+
+    public boolean isIdentiy(){
+        if(n != m){
+            return false;
+        }
+        for(int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr[0].length; j++){
+                if(j == i){
+                    if(!arr[i][j].isOne()){
+                        return false;
+                    }
+                } else {
+                    if(!arr[i][j].isZero()){
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+        return true;
+    }
+
     @Override
     public String toString(){
         String str = "[";
@@ -246,6 +280,21 @@ public class Matrix {
 
         return new Matrix(newGridCollum);
     }
+
+    public static Matrix identity(int size){
+        Numb[][] grid = new Numb[size][size];
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                if(i == j){
+                    grid[i][j] = new Numb(1);
+                } else{
+                    grid[i][j] = new Numb(0);
+                }
+            }
+        }
+        return new Matrix(grid);
+    }
+
 
 
 

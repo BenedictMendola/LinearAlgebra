@@ -95,6 +95,12 @@ public class Numb {
         }
         return (fractionValue.equals(0));
     }
+    public boolean isOne(){
+        if(isInt){
+            return intValue == 1;
+        }
+        return (fractionValue.equals(1));
+    }
 
     public static Numb zero(){
         return new Numb(0);

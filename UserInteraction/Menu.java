@@ -2,9 +2,9 @@ package UserInteraction;
 
 import javax.management.InvalidAttributeValueException;
 
-import MatrixBasics.Matrix;
-import MatrixBasics.RowReduction;
+import MatrixBasics.*;
 import UtilityClasses.Numb;
+
 public class Menu {
     
     public static void runMenu() throws InvalidAttributeValueException{
@@ -25,16 +25,19 @@ public class Menu {
                 case "1" :
                     rowReduce(scanner);
                     break;
-                case "2" :
+                case "2":
+                    inverse(scanner);
+                    break;
+                case "3" :
                     matrixAddition(scanner);
                     break;
-                case "3":
+                case "4":
                     matrixSubtraction(scanner);
                     break;
-                case "4":
+                case "5":
                     matrixMultiplicationWithScalar(scanner);
                     break;
-                case "5":
+                case "6":
                     matrixMultiplication(scanner);
                     break;
                 case "exit" :
@@ -51,9 +54,31 @@ public class Menu {
 
     private static void rowReduce(AdvancedScanner scanner) throws InvalidAttributeValueException{
         Matrix mat = scanner.getMatrix("A");
+        System.out.println("A:");
         mat.printMatrix();
-        Matrix reducedMat = RowReduction.rowRecduce(mat);
+        System.out.println("A in RREF:");
+        Matrix reducedMat = RowReduction.rowReduce(mat);
         reducedMat.printMatrix();
+    }
+
+    private static void inverse(AdvancedScanner scanner) throws InvalidAttributeValueException{
+        Matrix matA = scanner.getMatrix("A");
+        if(!CommonMatrixOpperations.isInvertibe(matA)){
+            System.out.println("Matrix A is not invertible");
+            return;
+        }
+
+        Matrix invA = CommonMatrixOpperations.matrixInverse(matA);
+        System.out.printf("\nA = %36s\n",matA.rowToString(0));
+        for(int i = 1; i < matA.getRowAmount(); i++){
+            System.out.printf("%40s\n",matA.rowToString(i));
+        }
+        System.out.printf("\nA inverse = %28s\n",invA.rowToString(0));
+        for(int i = 1; i < invA.getRowAmount(); i++){
+            System.out.printf("%40s\n",invA.rowToString(i));
+        }
+        
+
     }
 
     private static void matrixAddition(AdvancedScanner scanner) throws InvalidAttributeValueException{
@@ -132,10 +157,11 @@ public class Menu {
     private static void printMenu(){
         String toPrint = "What opperation would you like to use?"
         + "\nRow Reduce            : 1"
-        + "\nAdd Matrixes          : 2"
-        + "\nSubtract Matrixes     : 3"  
-        + "\nMultiply Matrix and C : 4"
-        + "\nMultipy Two Matrixes  : 5"
+        + "\nFind Inverse          : 2"
+        + "\nAdd Matrixes          : 3"
+        + "\nSubtract Matrixes     : 4"  
+        + "\nMultiply Matrix and C : 5"
+        + "\nMultiply Two Matrixes : 6"
         + "\nQuit Program          : exit"
         + "\n";
         System.out.println(toPrint);
