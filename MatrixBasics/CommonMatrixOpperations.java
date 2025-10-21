@@ -27,7 +27,7 @@ public class CommonMatrixOpperations {
         Numb[] topRow = matrixA.getRowArr(1);
 
         for(int i = 0; i < topRow.length; i++){
-            sum = sum.add(determinant(getNotInCross(matrixA, i)));
+            sum = sum.add(topRow[i].multiply(determinant(getNotInCross(matrixA, i)).multiply(new Numb((int)Math.pow(-1, i+2)))));
         }
 
         return sum;
