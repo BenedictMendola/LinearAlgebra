@@ -35,7 +35,14 @@ public class Fraction{
     }
 
     private void simplify(){
-        for(int i = denominator ; i > 1 ; i--){
+
+        if(numerator % denominator == 0){
+            numerator = (int)(numerator / denominator);
+            denominator = 1;
+            return;
+        }
+
+        for(int i = (int)(denominator)/2 + 1; i > 1 ; i--){
             if(numerator % i == 0 && denominator % i == 0){
                 numerator = (int)(numerator / i);
                 denominator = (int)(denominator / i);

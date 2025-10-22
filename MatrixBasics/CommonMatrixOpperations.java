@@ -15,9 +15,10 @@ public class CommonMatrixOpperations {
         return rrefMatrix.isIdentiy();
     }
 
+
     public static Numb determinant(Matrix matrixA){
         if(matrixA.getColumnAmount() == 1){
-            return matrixA.getColArr(0)[0];
+            return matrixA.getColArr(1)[0];
         }
         if(matrixA.getColumnAmount() == 2){
             return (matrixA.getRowArr(1)[0].multiply(matrixA.getRowArr(2)[1])).subtract(matrixA.getRowArr(1)[1].multiply(matrixA.getRowArr(2)[0]));
@@ -50,5 +51,21 @@ public class CommonMatrixOpperations {
 
         return new Matrix(newMat);
     }
+
+    public static Matrix adjugate(Matrix matA){
+        Matrix inverseMatA = matrixInverse(matA);
+        Numb detA = determinant(matA);
+        Numb[][] newGrid = new Numb[matA.getRowAmount()][matA.getRowAmount()];
+        for(int i = 0; i < newGrid.length; i++){
+            Numb[] nums = inverseMatA.getRowArr(i+1);
+            for(int j = 0; j < newGrid[0].length; j++){
+                newGrid[i][j] = nums[j].multiply(detA);
+            }
+        }
+
+        return new Matrix(newGrid);
+    }
+
+    
 
 }

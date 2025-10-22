@@ -52,13 +52,13 @@ public class AdvancedScanner {
 
     public Matrix getMatrix(String matrixName) throws InvalidAttributeValueException{
         System.out.println("Matrix " + matrixName +" Details :\n");
-        int m = getInt("        " + matrixName + "Amount of rows   :   ");
+        int m = getInt("        " + matrixName + " Amount of rows   :   ");
         while(m < 1){
-            m = getInt("        " + matrixName + "Amount of rows (MUST BE > 1 )   :   ");
+            m = getInt("        " + matrixName + " Amount of rows (MUST BE > 1 )   :   ");
         }
-        int n = getInt("        " + matrixName + "Amount of Columns:   ");
+        int n = getInt("        " + matrixName + " Amount of Columns:   ");
         while (n<1) {
-            n = getInt("        " + matrixName + "Amount of Columns: (MUST BE > 1 )  ");
+            n = getInt("        " + matrixName + " Amount of Columns: (MUST BE > 1 )  ");
         }
         Numb[] numbs = new Numb[m*n];
         System.out.println();
